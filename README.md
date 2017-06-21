@@ -21,6 +21,9 @@
         7)Improved Documentation.
 
 # Authors : Hyperclaw79, version 2.0; Barry Shteiman , version 1.0
-# -------------------------------------------------------------------------------------------- #
+
+---------------------------------------------------------------------
 
 HULK v2 is a Python 3 compatible Denial of Service Script. Original script was created by Barry Shteiman. You can use that one if you have Python 2. Here's the link: http://www.sectorix.com/2012/05/17/hulk-web-server-dos-tool/ 
+
+Using a GNU license cause there was no mention about any license used by Barry. Feel free to modify and share it, but leave some credits to us both and don't hold us liable.
