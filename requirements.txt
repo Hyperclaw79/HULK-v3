@@ -1,0 +1,4 @@
+urllib3>=1.21.1
+pyOpenSSL>=17.0.0
+pyasn1>=0.2.3
+ndg-httpsclient>=0.4.2
