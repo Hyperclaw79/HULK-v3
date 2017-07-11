@@ -28,6 +28,8 @@
         8)Payload Obfuscation.
         9)Converted global variables to class variables.
         10)Replaced Threading with Multiprocessing.
+        11)Introduced Shared Memory for interprocess communication. 
+        12)Performed other performance tweaks.
 
 -------------------------------------------------------------------------------------------------
 ## License
