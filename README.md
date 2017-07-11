@@ -1,23 +1,23 @@
-## HULK v2 - HTTPS Unbearable Load King
+# HULK v2 - HTTPS Unbearable Load King
 -----------------------------------------------------------------------------------------------
-#Introduction:
+## Introduction:
 
- This script is a *Denial of Service* tool that can put heavy load on HTTPS servers,
- in order to bring them to their knees, by exhausting the resource pool.
- Its is meant for research purposes only and any malicious usage of this tool is prohibited.
- **The authors aren't to be held responsible for any consequence of usage of this tool.**
+ > This script is a *Denial of Service* tool that can put heavy load on HTTPS servers,
+ > in order to bring them to their knees, by exhausting the resource pool.
+ > Its is meant for research purposes only and any malicious usage of this tool is prohibited.
+ > **The authors aren't to be held responsible for any consequence of usage of this tool.**
 
  Authors : **Hyperclaw79**, *version 2.0*; **Barry Shteiman** , *version 1.0*
 
- Notes: 
+ ### Notes: 
+     * Edited and improved by Hyperclaw79 for smoother working and PY3+ compatibility.
+     * Works for Python 3.5. No backward compatiblity.
  
-       *Edited and improved by Hyperclaw79 for smoother working and PY3+ compatibility.
-       *Works for Python 3.5. No backward compatiblity.
-       *Run ```py pip install -r requirements.txt``` before starting this script.
+ Run `pip install -r requirements.txt` before starting this script.
 
 -----------------------------------------------------------------------------------------------
 
-# Edits: 
+## Edits: 
         1)Syntax Corrections.
         2)Replaced urllib2 module with requests module.
         3)Replaced support for Http with support for Https.
@@ -30,7 +30,7 @@
         10)Replaced Threading with Multiprocessing.
 
 -------------------------------------------------------------------------------------------------
-#License
+## License
 
 HULK v2 is a Python 3 compatible Denial of Service Script. Original script was created by Barry Shteiman. You can use that one if you have Python 2. Here's the [link:] (http://www.sectorix.com/2012/05/17/hulk-web-server-dos-tool/) 
 
