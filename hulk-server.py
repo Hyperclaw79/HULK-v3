@@ -1,4 +1,3 @@
-import os
 import queue
 import re
 import select

