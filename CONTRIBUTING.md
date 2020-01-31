@@ -1,11 +1,13 @@
-# Edit Types:
+# Guidelines for Contributing
+
+## Edit Types
              Code Improvements like Optimisation, Formatting, etc.
              New Enhancements
              Issue Corrections
              Ideas
              Documentation Support
 
-# Rules:
+## Rules
         At least one review by a contributer assigned by Hyperclaw79.
         Clone an up to date Master before making edits.
         Pull Request on Edits only.
@@ -13,7 +15,7 @@
         On usage of third party modules, edit the requirements.txt too. 
         Comment over the changes.
 
-# Tips:
+## Tips
        Use the cards in Project tab to mark progress.
        Try working on the Open Issues as that will have higher priority.
        Open an issue when you find a new one.
