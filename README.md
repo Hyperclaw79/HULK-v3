@@ -4,7 +4,6 @@
 ![License](https://img.shields.io/badge/License-GNU-green?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/platform-Windows--10-lightgrey?style=for-the-badge)
 
-
 ## Introduction
 
  > This script is a *Distributed Denial of Service* tool that can put heavy load on HTTPS servers,
@@ -51,11 +50,11 @@
 1.  Run `pip install -r requirements.txt` before starting this script.
 
 2.  Launch the `hulk-server.py` with the target website as arg.
-    > `python hulk-server.py https://testdummysite.com`
+    >  `python hulk-server.py https://testdummysite.com`
 
 3.  Launch the `hulk-launcher.py` to spawn multiple processes of hulk - one per CPU Core.
-    > `python hulk-launcher.py localhost`
-    > If it's a bot on a remote client, replace localhost with the server's IP.
+    >  `python hulk-launcher.py localhost`
+    >  If it's a bot on a remote client, replace localhost with the server's IP.
 
 4.  Sit back and sip your coffee while the carnage unleashes! >:D
 -------------------------------------------------------------------------------------------------
