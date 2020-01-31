@@ -1,4 +1,7 @@
 # Async Hulk - HTTPS Unbearable Load King - HULK v3
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/28560f7e86504318891a6920bf0490d4)](https://app.codacy.com/manual/Hyperclaw79/HULK-v3?utm_source=github.com&utm_medium=referral&utm_content=Hyperclaw79/HULK-v3&utm_campaign=Badge_Grade_Settings)
+
 -----------------------------------------------------------------------------------------------
 ![Python Version](https://img.shields.io/badge/python-3.6%20%7C%203.7-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-GNU-green?style=for-the-badge)
