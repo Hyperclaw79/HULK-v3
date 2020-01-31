@@ -159,7 +159,11 @@ class Missile():
         try:
             self.root.sendall(str(status_list).encode())
             return 0
-        except ConnectionRefusedError, ConnectionAbortedError:
+        except (
+            ConnectionRefusedError,
+            ConnectionAbortedError,
+            ConnectionError
+        ):
             return -1
 
 if __name__ == "__main__":
@@ -211,7 +215,11 @@ if __name__ == "__main__":
             root.connect((root_ip, 666))
             print(f"Connected to {root_ip}:{666}!")
             break
-        except ConnectionRefusedError:
+        except (
+            ConnectionRefusedError,
+            ConnectionAbortedError,
+            ConnectionError
+        ):
             continue
     root.sendall("Requesting Target.".encode())
     while True:
