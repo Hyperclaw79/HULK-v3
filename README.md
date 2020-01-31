@@ -3,6 +3,7 @@
 ![Python Version](https://img.shields.io/badge/python-3.6%20%7C%203.7-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-GNU-green?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/platform-Windows--10-lightgrey?style=for-the-badge)
+![Codacy grade](https://img.shields.io/codacy/grade/a5939f58e4c44daebfbe46937686050b?style=for-the-badge)
 
 ## Introduction
 
