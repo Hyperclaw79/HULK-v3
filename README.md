@@ -1,6 +1,11 @@
 # Async Hulk - HTTPS Unbearable Load King - HULK v3
 -----------------------------------------------------------------------------------------------
-## Introduction:
+![Python Version](https://img.shields.io/badge/python-3.6%20%7C%203.7-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/License-GNU-green?style=for-the-badge)
+![Platform](https://img.shields.io/badge/platform-Windows--10-lightgrey?style=for-the-badge)
+
+
+## Introduction
 
  > This script is a *Distributed Denial of Service* tool that can put heavy load on HTTPS servers,
  > in order to bring them to their knees, by exhausting the resource pool.
@@ -9,14 +14,14 @@
 
  Authors : **Hyperclaw79**, *version 3.0, 2.0*; **Barry Shteiman** , *version 1.0*
 
- ### Notes: 
+ ### Notes
      * Edited and improved by Hyperclaw79 for smoother working and PY3+ compatibility.
      * Now works with an asynchronous model.
      * Works for Python 3.6, 3.7. No backward compatiblity.
  
 -----------------------------------------------------------------------------------------------
 
-## Edits:
+## Edits
 ### v3.0
         1. Switched from Multiprocessing to asynchronous event loops.
         2. Included a Root Server to control all bots for a DDoS.
@@ -43,13 +48,16 @@
 -------------------------------------------------------------------------------------------------
 ## Usage
 
-1. Run `pip install -r requirements.txt` before starting this script.
-2. Launch the `hulk-server.py` with the target website as arg.
-     > `python hulk-server.py https://testdummysite.com`
-3. Launch the `hulk-launcher.py` to spawn multiple processes of hulk - one per CPU Core.
-     > `python hulk-launcher.py localhost`
-     > If it's a bot on a remote client, replace localhost with the server's IP.
-4. Sit back and sip your coffee while the carnage unleashes! >:D
+1.  Run `pip install -r requirements.txt` before starting this script.
+
+2.  Launch the `hulk-server.py` with the target website as arg.
+    > `python hulk-server.py https://testdummysite.com`
+
+3.  Launch the `hulk-launcher.py` to spawn multiple processes of hulk - one per CPU Core.
+    > `python hulk-launcher.py localhost`
+    > If it's a bot on a remote client, replace localhost with the server's IP.
+
+4.  Sit back and sip your coffee while the carnage unleashes! >:D
 -------------------------------------------------------------------------------------------------
 
 ## License
