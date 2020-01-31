@@ -200,7 +200,7 @@ if __name__ == "__main__":
             "Author: Hyperclaw79\n"
         )
     )
-        
+
     root = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     root_ip = "localhost"
     if len(sys.argv) > 1:
