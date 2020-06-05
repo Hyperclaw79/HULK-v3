@@ -10,11 +10,10 @@ import socket
 class Missile():
     def __init__(self, root, url, loop):
         self.root = root
-        self.base_url = url
-        self.url = url.replace('http://', 'https://')
+        self.url = self.base_url = url
         if self.url.count("/") == 2:
             self.url += "/"
-        m = re.search('https\://([^/]*)/?.*', self.url)
+        m = re.search('http[s]?\://([^/]*)/?.*', self.url)
         self.host = m.group(1)
         url_fmt = self.url.rstrip('/')
         if self.url.count("?") > 0:          # For Quering type urls
