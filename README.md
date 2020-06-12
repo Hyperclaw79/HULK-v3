@@ -31,6 +31,7 @@
         6. Synchronized target status across all bots.
         7. Bots are reusable if the target isn't down within 500 attacks.
         8. Improved Documentation.
+        9. Added optional Persistence after successful DDoS.
 ### v2.0
         1)Syntax Corrections.
         2)Replaced urllib2 module with requests module.
@@ -52,6 +53,8 @@
 
 2.  Launch the `hulk-server.py` with the target website as arg.
     >  `python hulk-server.py https://testdummysite.com`
+    > Append `--persistent` at the end of the above command if you want a continuous attack even after a succesfull DDoS.
+    > You can press `Ctrl` + `C` (KeyboardInterrupt) to stop and change the target.
 
 3.  Launch the `hulk-launcher.py` to spawn multiple processes of hulk - one per CPU Core.
     >  `python hulk-launcher.py localhost`
