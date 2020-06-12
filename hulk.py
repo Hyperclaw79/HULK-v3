@@ -11,16 +11,11 @@ import time
 class Missile():
     def __init__(self, root, url, loop):
         self.root = root
-        self.base_url = url
-        self.url = url#.replace('http://', 'https://')
+        self.url = self.base_url = url
         if self.url.count("/") == 2:
             self.url += "/"
         m = re.search('http[s]?\://([^/]*)/?.*', self.url)
-        try:
-            self.host = m.group(1)
-        except AttributeError:
-            self.root.sendall("Invalid Url".encode())
-            return
+        self.host = m.group(1)
         url_fmt = self.url.rstrip('/')
         if self.url.count("?") > 0:          # For Quering type urls
             param_joiner = "&"
@@ -184,7 +179,6 @@ if __name__ == "__main__":
         missile = Missile(root=root, url=url, loop=loop)
         root_status = await missile.attack(500)
         return root_status
-    
     def bordered(text):
         sentences = text.splitlines()
         hor = max(len(line) for line in sentences) + 2
