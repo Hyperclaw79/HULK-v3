@@ -69,7 +69,9 @@
 -------------------------------------------------------------------------------------------------
 ## Usage
 
-1.  Run `pip install -r requirements.txt` before starting this script.
+1.  Run `pip install -r requirements_(linux/win).txt` before starting this script.
+    > Ex: On Windows: `pip install -r requirements_win.txt`
+    > Ex: On Linux: `pip install -r requirements_linux.txt`
 
 2.  Launch the `hulk_launcher.py server` with the target website as arg.
     > Ex: `python hulk_launcher.py server https://testdummysite.com`

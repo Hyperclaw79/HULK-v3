@@ -1,0 +1,4 @@
+aiohttp>=3.8.1
+pychalk==2.0.1
+pycodestyle==2.8.0
+pylint==2.14.4

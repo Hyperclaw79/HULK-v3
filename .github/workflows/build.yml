@@ -1,0 +1,76 @@
+name: Build and Package
+
+on:
+  push:
+    branches: ["async"]
+    paths:
+      - '*.py'
+      - client/**
+      - gui/**
+      - server/**
+      - '*.spec'
+      - requirements_*.txt
+
+  workflow_dispatch:
+
+jobs:
+  Packager:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Set Env Vars for Linux
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          echo "OS_SHORT_NAME=linux" >> $GITHUB_ENV
+          echo "OS_NAME=linux" >> $GITHUB_ENV
+          echo "EXT=AppImage" >> $GITHUB_ENV
+      
+      - name: Set Env Vars for Windows
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+            echo "OS_SHORT_NAME=win" >> $GITHUB_ENV
+            echo "OS_NAME=windows" >> $GITHUB_ENV
+            echo "EXT=exe" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+          architecture: x64
+
+      - name: Install Dependencies from requirements.txt
+        run: |
+          python -m pip install -r requirements_${{ env.OS_SHORT_NAME }}.txt
+          python -m pip install pyinstaller
+
+      - name: Package Python Binaries with Pyinstaller
+        run: |
+          pyinstaller hulk_${{ env.OS_SHORT_NAME }}.spec
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.7.0
+
+      - name: Build GUI
+        run: |
+          cd gui
+          npm install
+          npm run build:${{ env.OS_SHORT_NAME }}
+
+      - name: Copy GUI binary to main dist folder
+        shell: bash
+        run: |
+          cp gui/dist/${{ env.OS_SHORT_NAME }}/Hulk_GUI.${{ env.EXT }} dist/${{ env.OS_NAME }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Hulk Binaries
+          path: dist/

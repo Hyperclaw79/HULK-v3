@@ -1,0 +1,32 @@
+name: Attach Binaries to GitHub Release
+
+on:
+  release:
+    branches: ["async"]
+    types: [published]
+    tags:
+      - v*.*
+
+jobs:
+  Binary_Attacher:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yml
+          workflow_conclusion: success
+          branch: async
+          name: Hulk Binaries
+          search_artifacts: true
+          skip_unpack: true
+
+      - name: Rename the Binary
+        shell: bash
+        run: mv "Hulk Binaries.zip" Hulk_Binaries.zip
+
+      - name: Attach the binaries
+        uses: shogo82148/actions-upload-release-asset@v1
+        with:
+          upload_url: "https://uploads.github.com/repos/Hyperclaw79/HULK-v3/releases/${{ github.event.release.id }}/assets?name=Hulk_Binaries.zip"
+          asset_path: Hulk_Binaries.zip
