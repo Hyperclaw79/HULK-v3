@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 import PyInstaller.config
 import platform
-PyInstaller.config.CONF['distpath'] = f"./dist/{platform.system()}"
+PyInstaller.config.CONF['distpath'] = f"./dist/{platform.system().lower()}"
 
 block_cipher = None
 
@@ -42,7 +42,7 @@ server_exe = EXE(
 
 
 client = Analysis(
-    ['client/hulk_client.py'],
+    ['client/hulk.py'],
     pathex=['client'],
     binaries=[],
     datas=[],

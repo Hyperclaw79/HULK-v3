@@ -1,6 +1,6 @@
 appId: com.hyperclaw.hulk
 productName: Hulk GUI
-artifactName: Hulk GUI.${ext}
+artifactName: Hulk_GUI.${ext}
 copyright: Copyright © 2022 Hyperclaw79
 directories:
   output: dist/${os}
@@ -20,3 +20,4 @@ linux:
   synopsis: Hulk GUI
   description: This is the GUI Dashboard for the Hulk Botnet.
   category: Security
+  target: [AppImage]
