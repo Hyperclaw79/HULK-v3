@@ -1,0 +1,46 @@
+{
+  "name": "hulk_gui",
+  "version": "0.1.0",
+  "description": "This is the GUI Dashboard for the Hulk Botnet.",
+  "author": "Hyperclaw79",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hyperclaw79/hulk-v3"
+  },
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "main": "app/background.js",
+  "scripts": {
+    "next:dev": "cd renderer && npx next dev",
+    "next:build": "cd renderer && npx next build",
+    "next:start": "cd renderer && npx next start",
+    "next:lint": "cd renderer && npx next lint",
+    "dev": "nextron",
+    "build": "nextron build",
+    "build:all": "nextron build --all",
+    "build:win": "nextron build --win --x64",
+    "build:linux": "nextron build --linux",
+    "postinstall": "electron-builder install-app-deps",
+    "lint": "eslint --ext .tsx,.ts ."
+  },
+  "dependencies": {
+    "electron-serve": "^1.1.0",
+    "electron-store": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/react": "^18.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "electron": "^18.2.0",
+    "electron-builder": "^23.0.3",
+    "eslint": "^8.21.0",
+    "eslint-config-next": "^12.2.3",
+    "eslint-plugin-react": "^7.30.1",
+    "next": "^12.2.3",
+    "nextron": "^8.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.6.4"
+  }
+}

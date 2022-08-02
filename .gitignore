@@ -1,4 +1,8 @@
-_pycache_/
+__pycache__/
 win_bin/
 hulk.bat
 GuiHulk/
+.venv/
+.vscode/
+build/
+node_modules/
