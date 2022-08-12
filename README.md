@@ -184,7 +184,11 @@ Then the frontend will pick it up from the API using `EventSource`.
 | **Barry Shteiman** |   1.0   |
 
 ### Contributors :handshake:
-Your chance to be first on this list. Follow the [Contribution Guide](/.github/CONTRIBUTING.md) and open a PR.
+Thanks for contributing to the repo. Follow the [Contribution Guide](/.github/CONTRIBUTING.md) and open a PR.
+
+| Contributor | Contribution |
+| :--: | :--: |
+| [Nexuzzzz](https://github.com/Nexuzzzz) | Fixed typo in the code |
 
 </details>
 
