@@ -139,7 +139,7 @@ class Missile:
                 status = resp.status
                 reason = resp.reason
                 if any([
-                    resp.headers.get('server', '').lower() == "cloudfare",
+                    resp.headers.get('server', '').lower() == "cloudflare",
                     status == 400
                 ]):
                     FILTER.update_address(self.comms.address)
