@@ -35,7 +35,7 @@
     "electron": "^18.2.0",
     "electron-builder": "^23.0.3",
     "eslint": "^8.21.0",
-    "eslint-config-next": "^12.2.3",
+    "eslint-config-next": "^13.1.1",
     "eslint-plugin-react": "^7.30.1",
     "next": "^12.2.3",
     "nextron": "^8.1.0",
