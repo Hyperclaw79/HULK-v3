@@ -19,6 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
+        # Test Build on Python 3.8 and latest version
+        # But only push the binaries for Python 3.8
+        python: ['3.8', '3.x']
 
     runs-on: ${{ matrix.os }}
 
@@ -43,7 +46,7 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.8'
+          python-version: ${{ matrix.python }}
           architecture: x64
 
       - name: Install Dependencies from requirements.txt
@@ -58,19 +61,25 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.7.0
+        if: matrix.python == '3.8'
 
       - name: Build GUI
         run: |
           cd gui
           npm install
           npm run build:${{ env.OS_SHORT_NAME }}
+        if: matrix.python == '3.8'
 
       - name: Copy GUI binary to main dist folder
         shell: bash
         run: |
           cp gui/dist/${{ env.OS_SHORT_NAME }}/Hulk_GUI.${{ env.EXT }} dist/${{ env.OS_NAME }}
+        if: matrix.python == '3.8'
 
       - uses: actions/upload-artifact@v3
         with:
           name: Hulk Binaries
-          path: dist/
+          path: |
+            dist/
+            !dist/.gitignore
+        if: matrix.python == '3.8'
